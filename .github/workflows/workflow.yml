@@ -1,7 +1,12 @@
 name: CI
 
 on:
-  push
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build:
@@ -20,11 +25,12 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
+
       - name: make setup
-	run: make insstall
-      
+        run: make install
+
       - name: make test
-	run: make test
+        run: make test
 
       - name: make lint
-	run: make lint
+        run: make lint
